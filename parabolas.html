@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="static/style.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Text&display=swap" rel="stylesheet">
+        <title>Parabola Tool</title>
+        <script>
+            let points = [];
+            let theta = 0
+            function selectPoint(idname) {
+            document.getElementById(idname).style.background = "black";
+            points.push(idname);
+            if (points.length === 3) {
+               submitPoints();
+            }}
+
+            function updateAngle () {
+                theta = document.getElementById("angleinput").value;
+            }
+
+            // I basically copied the below syntax from someone's answer on Stack Exchange about how to have
+            // JavaScript communicate with Flask by calling a POST request along with information
+            function submitPoints () {
+              var theForm, newInput1, newInput2;
+              // Start by creating a <form>
+              theForm = document.createElement('form');
+              theForm.action = '/';
+              theForm.method = 'post';
+              // Next create the <input>s in the form and give them names and values
+              newInput1 = document.createElement('input');
+              newInput1.type = 'text';
+              newInput1.name = 'point_0';
+              newInput1.value = points[0]
+              newInput2 = document.createElement('input');
+              newInput2.type = 'text';
+              newInput2.name = 'point_1';
+              newInput2.value = points[1];
+              newInput3 = document.createElement('input');
+              newInput3.type = 'text';
+              newInput3.name = 'point_2';
+              newInput3.value = points[2];
+              newInput4 = document.createElement('input');
+              newInput4.type = 'text';
+              newInput4.name = 'angle';
+              newInput4.value = theta;
+              // Now put everything together...
+              theForm.appendChild(newInput1);
+              theForm.appendChild(newInput2);
+              theForm.appendChild(newInput3);
+              theForm.appendChild(newInput4);
+              // ...and it to the DOM...
+              document.getElementById('hidden_form_container').appendChild(theForm);
+              // ...and submit it
+              theForm.submit();
+            }
+        </script>
+    <body>
+    <div id=pageContainer>
+
+                <div id="titleBar">
+                    <h1>
+                        Parabola Tool — Build your own Parabola
+                    </h1>
+                </div>
+                <main id="index">
+                    <div id="navigationBar">
+                        <h1>{{ message }}</h1>
+                        <form name="angleform" action="javascript:void(0);" onsubmit="javascript:updateAngle()">
+                            <div>
+                                <input class="btn" id="angleinput" autocomplete="off" autofocus class="form-control" name="angle" placeholder="Angle (degrees)" type="text">
+                            </div>
+                            <button class="btn" type="submit">Enter Angle</button>
+                        </form>
+                    </div>
+                    <div id="content">
+                        <div id="table">
+                        {% for row in cells %}
+                            <div id="row">
+                                {% for entry in row %}
+                                <div class = "cell" id="cell{{entry}}" onclick="selectPoint('cell{{entry}}')"></div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+
+                        </div>
+                    </div>
+                </main>
+                <footer>
+                    <div id="hidden_form_container" style="display:none;"></div>
+                </footer>
+    </div>
+    </body>
+</html>

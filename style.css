@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  
+  /* The side navigation menu */
+  #navigationBar {
+    min-width: 300px; /* 0 width - change this with JavaScript */
+    position: relative;
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    bottom: 0;
+    left: 0;
+    background-color: DarkSlateGrey; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    float: left;
+  }
+  
+  
+  /* Set height of elements beneath the main heading to 100% */
+  html, body, main {
+    height: 100%;
+    font-family: 'Libre Caslon Text', serif;
+  }
+  
+  #titleBar {
+    background-color: #333333;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    text-transform: uppercase;
+  }
+  
+  main {
+    position: relative;
+    display: flex;
+    color: white;
+    min-height: calc(100vh - 200px);
+  }
+  
+  #pageContainer {
+    display: flex;
+    flex-flow: column;
+  
+  }
+  
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #content {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    width: 100%;
+    padding: 20px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    background-color: blue;
+  }
+  
+  #table {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+  }
+  
+  #row {
+      position: relative;
+      display: flex;
+  }
+  
+  #cellblack {
+      background-color: black;
+  }
+  
+  .cell {
+      min-height: 5px;
+      min-width: 5px;
+      border-width: 1px;
+      border-color: black;
+      background-color: red;
+  }
+  
+  .cell:hover {
+      background-color: blue;
+  }
+  
+  .btn {
+      width: 100px;
+      height: 50px;
+      margin: 100px;
+      background-color: red;
+      text-align: center;
+  }
+  
+  #angleinput {
+      background-color: white;
+  }
+  
+  
+  /* Footer specifications */
+  footer {
+    position: relative;
+    height: 100px;
+    width: 100%;
+    background-color: #333333;
+  }
+  
+  
+  
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  
